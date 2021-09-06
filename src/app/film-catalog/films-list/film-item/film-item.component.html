@@ -1,0 +1,13 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{film.name}}</mat-card-title>
+    <mat-card-title>{{film.year}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src={{film.imgUrl}} alt={{film.name}}>
+  <mat-card-content>
+      <details-inner [info]="film.description"></details-inner>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="incFav()" >Добавить в избранное</button>
+  </mat-card-actions>
+</mat-card>

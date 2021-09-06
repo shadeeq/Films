@@ -1,0 +1,33 @@
+<mat-card class="menu-card">
+    
+    <mat-toolbar class="menu-toolbar">
+        <mat-toolbar-row>
+          <span>В избранное добавлено: {{favorites}} элементов</span>
+          <span class="example-spacer"></span>
+            <div>
+                <mat-form-field>
+                  <mat-select [(ngModel)]="selected" placeholder="Сортировка">
+                    <mat-option value="ASC" (click)="sortFilms()">По алфавиту: A-Z</mat-option>
+                    <mat-option value="DESC" (click)="sortFilms()" >По алфавиту: Z-A </mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+</mat-card>
+  
+  
+  <mat-grid-list cols="3" rowHeight="900px">
+      
+      <mat-grid-tile *ngFor="let film of films" colspan="1">
+
+        <app-film-item [favorites]="favorites" (getFavorites)="setFavorites($event)" [film]="film" ></app-film-item>
+
+      </mat-grid-tile>
+      
+      
+      
+  </mat-grid-list>
+
+
