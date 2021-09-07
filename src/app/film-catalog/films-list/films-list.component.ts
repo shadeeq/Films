@@ -9,26 +9,20 @@ import { FilmService } from '../film.service';
 export class FilmsListComponent implements OnInit {
   favorites = [];
   films: any;
-  selected = '';
+  sortMethod = '';
   constructor(public filmService: FilmService) {   
   }
 
-  setUpdatedValue(){
-    this.films = this.filmService.getData();
-  }
-
   sortFilms() {
-    switch (this.selected) {
-      case 'ASC':
-        
+    switch (this.sortMethod) {
+      case 'ASC':   
         this.films.sort((a,b) => {
           let x = a.name.toLowerCase();
           let y = b.name.toLowerCase();
           return x < y ? -1 : x > y ? 1 : 0;
         });
         break;
-      case 'DESC':
-        
+      case 'DESC':    
         this.films.sort((a,b) => {
           let x = a.name.toLowerCase();
           let y = b.name.toLowerCase();
@@ -39,12 +33,13 @@ export class FilmsListComponent implements OnInit {
   }
   
   ngOnInit() { 
-    this.setUpdatedValue()
+    this.films = this.filmService.getData();
   }
 
   setFavorites(film) {
     if (this.favorites.find(filmInFav => filmInFav.id === film.id)) {
-      return null;
+      const filmIndex = this.favorites.findIndex(filmInFav => filmInFav.id === film.id);
+      this.favorites.splice(filmIndex, 1);
     } else {
       this.favorites.push(film);
     }
