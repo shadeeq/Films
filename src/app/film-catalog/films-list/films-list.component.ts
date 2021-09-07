@@ -37,8 +37,8 @@ export class FilmsListComponent implements OnInit {
   }
 
   setFavorites(film) {
-    if (this.favorites.find(filmInFav => filmInFav.id === film.id)) {
-      const filmIndex = this.favorites.findIndex(filmInFav => filmInFav.id === film.id);
+    const filmIndex = this.favorites.findIndex(filmInFav => filmInFav.id === film.id);
+    if (filmIndex >= 0) {
       this.favorites.splice(filmIndex, 1);
     } else {
       this.favorites.push(film);
