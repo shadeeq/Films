@@ -2,12 +2,12 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FilmService } from '../film.service';
 
 @Component({
-  selector: '.films',
+  selector: '.app-films-list',
   templateUrl: './films-list.component.html',
   styleUrls: ['./films-list.component.css']
 })
 export class FilmsListComponent implements OnInit {
-  favorites: number = 0;
+  favorites = [];
   films: any;
   selected = '';
   constructor(public filmService: FilmService) {   
@@ -42,8 +42,12 @@ export class FilmsListComponent implements OnInit {
     this.setUpdatedValue()
   }
 
-  setFavorites(event) {
-    this.favorites = event;
+  setFavorites(film) {
+    if (this.favorites.find(filmInFav => filmInFav.id === film.id)) {
+      return null;
+    } else {
+      this.favorites.push(film);
+    }
   }
   
 }

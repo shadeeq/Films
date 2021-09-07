@@ -8,7 +8,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class FilmItemComponent implements OnInit {
   @Input() film;
-  @Input() favorites;
   @Output() getFavorites = new EventEmitter();
   constructor() { }
 
@@ -16,8 +15,7 @@ export class FilmItemComponent implements OnInit {
   }
 
   incFav() {
-    ++this.favorites;
-    this.getFavorites.emit(this.favorites);
+    this.getFavorites.emit(this.film);
   }
 
 }

@@ -3,7 +3,7 @@
     <mat-card-title>{{film.name}}</mat-card-title>
     <mat-card-title>{{film.year}}</mat-card-title>
   </mat-card-header>
-  <img mat-card-image src={{film.imgUrl}} alt={{film.name}}>
+  <img mat-card-image [src]="film.imgUrl" [alt]="film.name">
   <mat-card-content>
       <details-inner [info]="film.description"></details-inner>
   </mat-card-content>

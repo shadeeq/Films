@@ -1,4 +1,17 @@
-.example-card {
+img {
+    margin-left: auto;
+    margin-top: 100px;
+    padding-bottom: 20px;
+    width: 150px;
+}
+mat-card {
+    margin-top: 0px;
+    height: 500px;
     max-width: 300px;
 }
 
+mat-card-header {
+    padding-top: 7px;
+    position: absolute;
+    max-height: 100px;
+}
