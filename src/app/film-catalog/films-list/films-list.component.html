@@ -2,6 +2,7 @@
     <mat-toolbar class="menu-toolbar">
         <mat-toolbar-row>
           <span>В избранное добавлено: {{favorites.length}} элементов</span>
+          <input placeholder="введите название фильма" [ngModel]="inputData" (ngModelChange)="findFilm($event)">
           <span class="example-spacer"></span>
             <div>
                 <mat-form-field>
@@ -12,14 +13,24 @@
                 </mat-form-field>
             </div>
         </mat-toolbar-row>
+      
     </mat-toolbar>
 </mat-card>
-  
-  
-<mat-grid-list cols="4" rowHeight="600px">
+
+<ng-container *ngIf="films.length > 0; else notFound">
+
+  <mat-grid-list cols="3" rowHeight="520px">   
     <mat-grid-tile *ngFor="let film of films" colspan="1">
+    
+        <app-film-item (getFilm)="setFavorites($event)" [film]="film" ></app-film-item>
+  
+    </mat-grid-tile> 
+  </mat-grid-list>
 
-      <app-film-item (getFavorites)="setFavorites($event)" [film]="film" ></app-film-item>
+  <button *ngIf="showLoadButton" [disabled]="endOfList" class="load-more" (click)="loadMore()" mat-button>load more</button>
 
-    </mat-grid-tile>         
-</mat-grid-list>
+</ng-container>
+
+<ng-template #notFound>
+  <div>Ничего не найдено</div>
+</ng-template>

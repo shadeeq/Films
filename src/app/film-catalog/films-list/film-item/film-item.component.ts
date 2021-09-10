@@ -8,16 +8,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class FilmItemComponent implements OnInit {
   
   @Input() film;
-  @Output() getFavorites = new EventEmitter();
-  isFilmAdded = false;
+  @Output() getFilm = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
   }
 
   sendFilm() {
-    this.getFavorites.emit(this.film);
-    this.isFilmAdded = !this.isFilmAdded;
+    this.film.favorite = !this.film.favorite;
+    this.getFilm.emit(this.film);
   }
 
 }

@@ -9,3 +9,11 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+mat-form-field {
+  max-height: 12px;
+  margin-bottom: 2px;
+}
+.load-more {
+  background-color: #3f51b556;
+  margin-left: 50%;
+}

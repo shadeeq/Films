@@ -7,10 +7,36 @@ import { FilmService } from '../film.service';
   styleUrls: ['./films-list.component.css']
 })
 export class FilmsListComponent implements OnInit {
+  endOfList = false;
+  displayCount = 3;
+  inputData: string = '';
+  showLoadButton = true;
   favorites = [];
   films: any;
+  allFilms = [];
   sortMethod = '';
   constructor(public filmService: FilmService) {   
+  }
+
+  ngOnInit() { 
+    this.films = this.filmService.getData(this.displayCount);
+  }
+
+  findFilm(data) {
+    this.inputData = data.toLowerCase();
+    this.allFilms = this.filmService.getData();
+    if (this.inputData.length > 1) {
+      this.films = this.allFilms.filter(film => {
+        if (film.name.toLowerCase().includes(this.inputData)) {
+          this.showLoadButton = false;
+          return true;
+        }
+      });
+    } else {
+      this.films = this.filmService.getData(this.displayCount);
+      this.showLoadButton = true;
+      this.sortFilms();
+    }
   }
 
   sortFilms() {
@@ -32,16 +58,21 @@ export class FilmsListComponent implements OnInit {
     }
   }
   
-  ngOnInit() { 
-    this.films = this.filmService.getData();
-  }
-
   setFavorites(film) {
     const filmIndex = this.favorites.findIndex(filmInFav => filmInFav.id === film.id);
     if (filmIndex >= 0) {
       this.favorites.splice(filmIndex, 1);
     } else {
       this.favorites.push(film);
+    }
+  }
+
+  loadMore() {
+    this.displayCount = this.displayCount + 3;
+    this.films = this.filmService.getData(this.displayCount);
+    this.sortFilms();
+    if (this.displayCount >= this.filmService.getLength()) {
+      this.endOfList = true;
     }
   }
   

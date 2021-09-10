@@ -1,17 +1,29 @@
 img {
     margin-left: auto;
-    margin-top: 100px;
-    padding-bottom: 20px;
+    margin-top: 80px;
+    padding-bottom: 0px;
     width: 150px;
 }
 mat-card {
     margin-top: 0px;
-    height: 500px;
+    height: 470px;
     max-width: 300px;
+    padding: 2px;
 }
 
 mat-card-header {
-    padding-top: 7px;
+    padding-top: 12px;
     position: absolute;
     max-height: 100px;
+}
+.card-inner {
+    margin-left: 12px;
+    margin-right: 7px;
+}
+mat-card-actions{
+    margin-left: 0px;
+}
+
+.active {
+    background-color: #3f51b53a;
 }
