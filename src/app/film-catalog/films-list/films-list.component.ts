@@ -71,7 +71,7 @@ export class FilmsListComponent implements OnInit {
     this.displayCount = this.displayCount + 3;
     this.films = this.filmService.getData(this.displayCount);
     this.sortFilms();
-    if (this.displayCount >= this.filmService.getLength()) {
+    if (this.displayCount >= this.filmService.getData().length) {
       this.endOfList = true;
     }
   }

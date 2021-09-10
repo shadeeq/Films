@@ -27,8 +27,5 @@ export class FilmService {
   getData(num = this.films.length) {
       return  this.films.slice(0, num);
   }
-  getLength() {
-    return this.films.length;
-  }
-
+  
 }
