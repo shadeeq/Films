@@ -8,7 +8,7 @@ import { FilmService } from '../film.service';
 })
 export class FilmsListComponent implements OnInit {
   endOfList = false;
-  displayCount = 3;
+  displayCount = 4;
   inputData: string = '';
   showLoadButton = true;
   favorites = [];
@@ -58,17 +58,12 @@ export class FilmsListComponent implements OnInit {
     }
   }
   
-  setFavorites(film) {
-    const filmIndex = this.favorites.findIndex(filmInFav => filmInFav.id === film.id);
-    if (filmIndex >= 0) {
-      this.favorites.splice(filmIndex, 1);
-    } else {
-      this.favorites.push(film);
-    }
+  setFavorites() {
+    this.favorites = this.films.filter(item => item.favorite);
   }
 
   loadMore() {
-    this.displayCount = this.displayCount + 3;
+    this.displayCount = this.displayCount + 4;
     this.films = this.filmService.getData(this.displayCount);
     this.sortFilms();
     if (this.displayCount >= this.filmService.getData().length) {

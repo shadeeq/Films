@@ -17,9 +17,9 @@
 </mat-card>
 
 <ng-container *ngIf="films.length > 0; else notFound">
-  <mat-grid-list cols="3" rowHeight="520px">   
+  <mat-grid-list cols="4" rowHeight="520px">   
     <mat-grid-tile *ngFor="let film of films" colspan="1">
-        <app-film-item (getFilm)="setFavorites($event)" [film]="film" ></app-film-item>
+        <app-film-item (getFilm)="setFavorites()" [film]="film" ></app-film-item>
     </mat-grid-tile> 
   </mat-grid-list>
   <button *ngIf="showLoadButton" [disabled]="endOfList" class="load-more" (click)="loadMore()" mat-button>load more</button>
