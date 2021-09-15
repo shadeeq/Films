@@ -32,6 +32,8 @@ export class FilmService {
     return this.http.get(`${this.personUrl}/popular?page=${page}${this.params}`);
   }
 
-  
+  getFilmImg(item) {
+    return `${this.midImgPath}${item.poster_path}`;
+  }
 
 }

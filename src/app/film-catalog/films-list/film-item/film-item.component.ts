@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FilmService } from '../../film.service';
 
 @Component({
   selector: 'app-film-item',
@@ -6,12 +7,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./film-item.component.css']
 })
 export class FilmItemComponent implements OnInit {
-  
+  avatar: string;
   @Input() film;
   @Output() getFilm = new EventEmitter();
-  constructor() { }
+  constructor(public filmService: FilmService) { }
 
   ngOnInit() {
+    this.avatar = this.filmService.getFilmImg(this.film);
   }
 
   sendFilm() {
@@ -19,4 +21,5 @@ export class FilmItemComponent implements OnInit {
     this.getFilm.emit(this.film);
   }
 
+  
 }

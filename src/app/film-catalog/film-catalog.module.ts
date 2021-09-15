@@ -29,7 +29,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   declarations: [
     MainComponent, 
     FilmsListComponent, 
-    DetailsComponent, FilmItemComponent, SearchComponent
+    DetailsComponent, 
+    FilmItemComponent,
+    SearchComponent
   ]
 })
 export class FilmCatalogModule { }

@@ -4,7 +4,7 @@
       <mat-card-title>{{film.original_title}}</mat-card-title>
       <mat-card-title>{{film.release_date}} rating {{film.vote_average}}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image [src]="film.imgUrl" [alt]="film.name">
+    <img mat-card-image [src]="avatar" [alt]="film.name">
     <mat-card-content>
         <details-inner [info]="film.overview"></details-inner>
     </mat-card-content>

@@ -24,28 +24,22 @@ export class FilmsListComponent implements OnInit {
     this.loading = true;
     this.filmsService.getPopularFilms(this.page).subscribe(
       (filmList: any) => {
-        console.log('data',filmList.results);
-        filmList.results.forEach((film, i) => {
-          film.imgUrl = (`${this.filmsService.midImgPath}${filmList.results[i].poster_path}`);
+        filmList.results.forEach((film) => {
           this.dataToDisplay.push(film);
-         
-        });
+        }); 
         this.loading = false;
       },
       err => {
         console.log("error");
       }
     )
-   
   }
 
   getActorsData() {
     this.loading = true;
     this.filmsService.getPopularActors(this.page).subscribe(
       (actorList: any) => {
-        console.log('data', actorList.results);
-        actorList.results.forEach((actor, i) => {
-          actor.imgUrl = (`${this.filmsService.midImgPath}${actorList.results[i].profile_path}`);
+        actorList.results.forEach((actor) => {
           this.dataToDisplay.push(actor);
         });
         this.loading = false;

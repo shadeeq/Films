@@ -31,11 +31,8 @@
   <ng-template #notFound>
     <img class="not-found" src="https://blog.makuno.co.ke/img/search_error.png">
   </ng-template>
-
 </ng-template>
 
-<!-- <mat-progress-spinner *ngIf="loading; else loadedData" class="spinner" [color]="color" [mode]="indeterminate" [value]="50">
-</mat-progress-spinner> -->
 <div *ngIf="loading; else loadedData" class="spinner">
   <img src='https://miro.medium.com/max/1158/1*9EBHIOzhE1XfMYoKz1JcsQ.gif'>
 </div>
