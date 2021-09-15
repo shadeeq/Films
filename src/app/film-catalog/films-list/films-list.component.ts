@@ -24,9 +24,8 @@ export class FilmsListComponent implements OnInit {
     this.loading = true;
     this.filmsService.getPopularFilms(this.page).subscribe(
       (filmList: any) => {
-        filmList.results.forEach((film) => {
-          this.dataToDisplay.push(film);
-        }); 
+        this.dataToDisplay = [...this.dataToDisplay, ...filmList.results];
+        this.searchArr = this.dataToDisplay;
         this.loading = false;
       },
       err => {
@@ -39,9 +38,7 @@ export class FilmsListComponent implements OnInit {
     this.loading = true;
     this.filmsService.getPopularActors(this.page).subscribe(
       (actorList: any) => {
-        actorList.results.forEach((actor) => {
-          this.dataToDisplay.push(actor);
-        });
+        this.dataToDisplay = [...this.dataToDisplay, ...actorList.results];
         this.loading = false;
       },
       err => {
@@ -51,8 +48,7 @@ export class FilmsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getFilmsData();
-    this.searchArr = this.dataToDisplay;
+    this.getFilmsData(); 
   }
 
   findFilm(data) {
