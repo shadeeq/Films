@@ -10,6 +10,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { FilmItemComponent } from './films-list/film-item/film-item.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SearchComponent } from './films-list/search/search.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   imports: [
@@ -19,12 +22,16 @@ import { FilmItemComponent } from './films-list/film-item/film-item.component';
     MatButtonModule,
     MatGridListModule,
     MatSelectModule,
-    MatToolbarModule
+    MatToolbarModule,
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   declarations: [
     MainComponent, 
     FilmsListComponent, 
-    DetailsComponent, FilmItemComponent
+    DetailsComponent, 
+    FilmItemComponent,
+    SearchComponent
   ]
 })
 export class FilmCatalogModule { }

@@ -1,12 +1,12 @@
 <mat-card [ngClass]="{active: film.favorite}" class="example-card">
   <div class="card-inner">
     <mat-card-header>
-      <mat-card-title>{{film.name}}</mat-card-title>
-      <mat-card-title>{{film.year}}</mat-card-title>
+      <mat-card-title>{{film.original_title}}</mat-card-title>
+      <mat-card-title>{{film.release_date}} rating {{film.vote_average}}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image [src]="film.imgUrl" [alt]="film.name">
+    <img mat-card-image [src]="avatar" [alt]="film.name">
     <mat-card-content>
-        <details-inner [info]="film.description"></details-inner>
+        <details-inner [info]="film.overview"></details-inner>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button  (click)="sendFilm()" >{{film.favorite ? 'Удалить из избранного' : 'Добавить в избранное'}}</button>

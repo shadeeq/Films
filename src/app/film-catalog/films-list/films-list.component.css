@@ -17,3 +17,12 @@ mat-form-field {
   background-color: #3f51b556;
   margin-left: 50%;
 }
+.not-found {
+  position: absolute;
+  margin-left: 40%;
+  margin-top: 50px;
+}
+.spinner {
+  margin-left: 40%;
+  margin-top: 50px;
+}

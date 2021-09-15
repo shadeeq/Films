@@ -2,35 +2,38 @@
     <mat-toolbar class="menu-toolbar">
         <mat-toolbar-row>
           <span>В избранное добавлено: {{favorites.length}} элементов</span>
-          <input placeholder="введите название фильма" [ngModel]="inputData" (ngModelChange)="findFilm($event)">
+          <app-search (searchText)="findFilm($event)"></app-search>
           <span class="example-spacer"></span>
             <div>
                 <mat-form-field>
-                  <mat-select [(ngModel)]="sortMethod" (selectionChange)="sortFilms()" placeholder="Сортировка">
-                    <mat-option [value]="'ASC'" >По алфавиту: A-Z</mat-option>
-                    <mat-option [value]="'DESC'"  >По алфавиту: Z-A </mat-option>
+                  <mat-select [(ngModel)]="displayOption" (selectionChange)="displayCategory()" placeholder="Категории">
+                    <mat-option [value]="'Films'" >Фильмы</mat-option>
+                    <mat-option [value]="'Actors'">Актеры</mat-option>
                   </mat-select>
                 </mat-form-field>
             </div>
         </mat-toolbar-row>
-      
     </mat-toolbar>
 </mat-card>
 
-<ng-container *ngIf="films.length > 0; else notFound">
 
-  <mat-grid-list cols="3" rowHeight="520px">   
-    <mat-grid-tile *ngFor="let film of films" colspan="1">
-    
-        <app-film-item (getFilm)="setFavorites($event)" [film]="film" ></app-film-item>
+
+<ng-template #loadedData>
+  <ng-container *ngIf="dataToDisplay.length > 0; else notFound">
+    <mat-grid-list cols="4" rowHeight="520px">   
+      <mat-grid-tile *ngFor="let film of dataToDisplay" colspan="1">
+          <app-film-item (getFilm)="setFavorites()" [film]="film" ></app-film-item>
+      </mat-grid-tile> 
+    </mat-grid-list>
+    <button *ngIf="showLoadButton" class="load-more" (click)="loadMore()" mat-button>load more</button>
+  </ng-container>
   
-    </mat-grid-tile> 
-  </mat-grid-list>
-
-  <button *ngIf="showLoadButton" [disabled]="endOfList" class="load-more" (click)="loadMore()" mat-button>load more</button>
-
-</ng-container>
-
-<ng-template #notFound>
-  <div>Ничего не найдено</div>
+  <ng-template #notFound>
+    <img class="not-found" src="https://blog.makuno.co.ke/img/search_error.png">
+  </ng-template>
 </ng-template>
+
+<div *ngIf="loading; else loadedData" class="spinner">
+  <img src='https://miro.medium.com/max/1158/1*9EBHIOzhE1XfMYoKz1JcsQ.gif'>
+</div>
+
